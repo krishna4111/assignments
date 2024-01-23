@@ -14,6 +14,28 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
+  let arr = [];
+
+  let obj = {};
+
+  if (transactions.length != 0) {
+    transactions.forEach(function (item) {
+      if (item["category"] in obj) {
+        obj[item["category"]] += item["price"];
+      } else {
+        obj[item["category"]] = item["price"];
+      }
+    });
+
+    for (const prop in obj) {
+      let newObj = {};
+      newObj["category"] = prop;
+      newObj["totalSpent"] = obj[prop];
+      arr.push(newObj);
+    }
+    return arr;
+  }
+
   return [];
 }
 
